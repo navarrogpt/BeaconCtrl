@@ -13,17 +13,20 @@ APP_ROOT = Pathname.new File.expand_path('../../',  __FILE__)
 Dir.chdir APP_ROOT do
   puts "== Ruby check =="
 
+  # FIX: Ruby <= 1.9.3 doesn't allow to pass frozen String to Gem::Version.new
+  ruby_version = RUBY_VERSION.dup
+  supported_ruby_version = "2.1"
   # Check Ruby version
-  if Gem::Version.new(RUBY_VERSION) > Gem::Version.new("1.9.3")
-    puts "Ruby version: #{RUBY_VERSION}".green
-  else
-    puts "Ruby #{RUBY_VERSION} will be deprecated soon and >= 2.0.0 is advised".red
-  end
+  if Gem::Version.new(ruby_version) >= Gem::Version.new(supported_ruby_version)
+    puts "Ruby version: #{ruby_version}".green
 
-  # Run rest of the rake setup tasks
-  if File.exist?("Rakefile")
-    system "rake setup:all"
+    # Run rest of the rake setup tasks
+    if File.exist?("Rakefile")
+      system "rake setup:all"
+    else
+      puts "No Rakefile found".red
+    end
   else
-    puts "No Rakefile found".red
+    puts "BeaconControl doesn't support Ruby version: #{ruby_version}. Please use at least #{supported_ruby_version} Ruby version".red
   end
 end
