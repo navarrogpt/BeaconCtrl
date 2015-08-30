@@ -101,7 +101,6 @@ en:
         email: "your email"
         password: "password"
         password_confirmation: "confirm password"
-        invitation_code: "Invitation code"
         remember_me: "Remember me"
         create_account: "create an account"
         resend_confirmation_instructions: "Resend confirmation instructions"
