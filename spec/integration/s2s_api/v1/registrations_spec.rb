@@ -40,14 +40,14 @@ RSpec.describe 'S2sApi::V1::Registrations', type: :request, s2s: true do
     end
 
     it 'creates test application' do
+      expect(AppConfig).to receive(:create_test_app_on_new_account).once.and_return(true)
+
       expect {
         post "/s2s_api/v1/admins.json",
           client_id: doorkeeper_app.uid, client_secret: doorkeeper_app.secret, admin: admin_params
       }.to change(Application.where(test: true), :count).by(1)
 
       test_app = Application.last
-      expect(test_app.extension_active?(presence_extension)).to eq(true)
-      expect(test_app.account.active_extensions).to include(presence_extension)
     end
 
     it 'does not create test application if configured' do

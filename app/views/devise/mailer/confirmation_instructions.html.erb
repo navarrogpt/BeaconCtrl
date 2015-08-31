@@ -17,7 +17,8 @@
 
 <p><%= t('.go_ahead') %></p>
 
-<%= link_to t('.admin_panel_button'), confirmation_url(@resource, confirmation_token: @token), class: 'btn' %>
+<% url = AppConfig.confirmable ? confirmation_url(@resource, confirmation_token: @token) : new_admin_session_url %>
+<%= link_to t('.admin_panel_button'), url, class: 'btn' %>
 
 <p><b><%= t('.for_developers_title') %></b></p>
 <p><%= t('.beacon_ctrl_description') %></p>
