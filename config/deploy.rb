@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:navarrogpt/BeaconCtrl.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/deploy/apps/beaconctrl'
+set :deploy_to, -> { "/home/deploy/apps/#{fetch(:application)}" }
 
 # Default value for :scm is :git
 # set :scm, :git

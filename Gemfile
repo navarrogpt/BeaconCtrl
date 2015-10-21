@@ -106,6 +106,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'factory_girl_rails', '~>4.4.1'
   gem 'quiet_assets'
+
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
 end
 
 group :test do
