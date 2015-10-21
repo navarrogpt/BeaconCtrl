@@ -1,47 +1,28 @@
-###
-# Copyright (c) 2015, Upnext Technologies Sp. z o.o.
-# All rights reserved.
-#
-# This source code is licensed under the BSD 3-Clause License found in the
-# LICENSE.txt file in the root directory of this source tree. 
-###
-
 default: &default
   config:
+    secret_key_base: 6293c35deb097551e2468193395c613f93580bdda63b9e94e1b559f0d17d5ec37e452dee3f02ddffe6b662245de9252fb9b8b8adf0e0dc0b60205e5c2b83fdf0
     registerable: true
     confirmable: false
-    mailer_sender:
+    mailer_sender: notifications@wotwhere.com
     mailer_url_options:
       host: localhost
       port: 3000
     smtp_settings:
       address: smtp.gmail.com
       port: 587
-      domain:
-      user_name:
-      password:
+      domain: beaconctrl.wotwhere.com
+      user_name: notifications@wotwhere.com
+      password: 9k84ka0JD$uhLej3
       authentication: plain
       enable_starttls_auto: true
-    system_mailer_receiver: noreply@beacon-os.com
+    system_mailer_receiver: notifications@wotwhere.com
     redis_url: redis://localhost:6379
     create_test_app_on_new_account: true
     autoload_extensions:
-      "Analytics":  false
-      "DwellTime":  false
-      "Kontakt.io": false
+      "Analytics":  true
+      "DwellTime":  true
+      "Kontakt.io": true
       "Presence":   true
-    root:
-      username: root
-      password: toor
-    lowest_floor: 1
-    highest_floor: 10
-    google_analytics_enabled: false
-    sandbox_cert_path: 'path_to_cert.p12'
-    production_cert_path: 'path_to_cert.p12'
-    sandbox_cert_passphrase: 'path_to_cert.p12'
-    production_cert_passphrase: 'path_to_cert.p12'
-    force_ssl: false
-    # landing_page_url: http://localhost:3001
 
 development:
   <<: *default
